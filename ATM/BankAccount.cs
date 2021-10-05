@@ -24,7 +24,7 @@ namespace ATM
 
         public void Withdraw(decimal amountToWithdraw)
         {
-            if (amountToWithdraw > balance)
+            if (amountToWithdraw > balance || amountToWithdraw < 1)
             {
                 throw new ArgumentOutOfRangeException();
             }

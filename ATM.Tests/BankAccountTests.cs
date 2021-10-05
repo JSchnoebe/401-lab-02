@@ -36,12 +36,62 @@ namespace ATM.Tests
             BankAccount ba = new BankAccount();
 
             ba.Deposit(10);
-            
+
             ba.Withdraw(5);
 
             decimal result = ba.GetBalance();
 
             Assert.Equal(5, result);
+        }
+
+        [Fact]
+        public void Deposit_Throws_For_Negative_Value()
+        {
+            //Arrange
+            BankAccount ba = new BankAccount();
+
+            ba.Deposit(10);
+
+            //Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+
+                //Act
+                ba.Withdraw(15);
+
+            });
+        }
+
+        [Fact]
+        public void Deposits_Negative_Amount()
+        {
+            //Arrange
+            BankAccount ba = new BankAccount();
+
+            //Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+
+                //Act
+                ba.Deposit(-10);
+
+            });
+        }
+
+        [Fact]
+        public void Withdraws_Negative_Amount()
+        {
+            //Arrange
+            BankAccount ba = new BankAccount();
+
+            //Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+
+                //Act
+                ba.Withdraw(-10);
+
+            });
         }
     }
 }
