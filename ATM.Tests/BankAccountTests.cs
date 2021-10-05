@@ -22,11 +22,26 @@ namespace ATM.Tests
         public void Deposit()
         {
             BankAccount ba = new BankAccount();
+
             ba.Deposit(10);
 
             decimal result = ba.GetBalance();
 
-            Assert.Equal(0, result);
+            Assert.Equal(10, result);
+        }
+
+        [Fact]
+        public void Withdraw()
+        {
+            BankAccount ba = new BankAccount();
+
+            ba.Deposit(10);
+            
+            ba.Withdraw(5);
+
+            decimal result = ba.GetBalance();
+
+            Assert.Equal(5, result);
         }
     }
 }
