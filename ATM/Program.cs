@@ -4,21 +4,37 @@ namespace ATM
 {
     class Program
     {
-        private static readonly BankAccount account;
+        private static readonly BankAccount account = new BankAccount();
 
         static void Main(string[] args)
         {
             WriteWelcome();
 
-            int selected = PromptForAction();
+            while (true)
+            {
 
-            if (selected == 1)
-            {
-                PromptAndDeposit();
-            }
-            else if (selected == 2)
-            {
-                PromptAndWithdraw();
+                int selected = PromptForAction();
+
+                if (selected == 1)
+                {
+                    PromptAndDeposit();
+                }
+                else if (selected == 2)
+                {
+                    PromptAndWithdraw();
+                }
+                else if (selected == 3)
+                {
+                    ViewBalance();
+                }
+                else if (selected == 4)
+                {
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a number between 1 and 4.");
+                }
             }
         }
 
@@ -48,21 +64,34 @@ namespace ATM
         static void PromptAndDeposit()
         {
             Console.WriteLine("How much would you like to deposit?");
+            Console.Write("Deposit Amount: ");
 
             string input = Console.ReadLine();
 
-            int numInput = Convert.ToInt32(input);
+            decimal numInput = Convert.ToDecimal(input);
 
             account.Deposit(numInput);
+
+            Console.WriteLine($"{numInput} has been deposited");
         }
 
         static void PromptAndWithdraw()
         {
             Console.WriteLine("How much would you like to withdraw?");
+            Console.Write("Withdraw Amount: ");
 
             string input = Console.ReadLine();
 
             int numInput = Convert.ToInt32(input);
+
+            account.Withdraw(numInput);
+        }
+
+        static void ViewBalance()
+        {
+            decimal balance = account.GetBalance();
+
+            Console.WriteLine($"Your balance is: {balance}");
         }
     }
 }
