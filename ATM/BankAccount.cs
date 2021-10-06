@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 namespace ATM
 {
     public class BankAccount
@@ -32,6 +33,12 @@ namespace ATM
             {
                 balance = balance - amountToWithdraw;
             }
+        }
+
+        private void WriteToLog(decimal input)
+        {
+            string logMessage = $"{DateTime.Today:yyyy-MM-dd}: {balance}\n";
+            File.AppendAllText("transaction-log.txt", logMessage);
         }
     }
 }
