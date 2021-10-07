@@ -29,11 +29,15 @@ namespace ATM
                 }
                 else if (selected == 4)
                 {
+                    DisplayTransactionLog();
+                }
+                else if (selected == 5)
+                {
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Please enter a number between 1 and 4.");
+                    Console.WriteLine("Please enter a number between 1 and 5.");
                 }
             }
         }
@@ -50,7 +54,8 @@ namespace ATM
             Console.WriteLine("1. Deposit");
             Console.WriteLine("2. Withdraw");
             Console.WriteLine("3. View Balance");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Show Transactions");
+            Console.WriteLine("5. Exit");
 
             string input = Console.ReadLine();
 
@@ -92,6 +97,17 @@ namespace ATM
             decimal balance = account.GetBalance();
 
             Console.WriteLine($"Your balance is: {balance}");
+        }
+
+        static void DisplayTransactionLog()
+        {
+            string[] logs = account.GetLog();
+
+            for(int i = 0; i < logs.Length; i++)
+            {
+                Console.WriteLine($"{logs[i]}");
+            }
+            
         }
     }
 }
