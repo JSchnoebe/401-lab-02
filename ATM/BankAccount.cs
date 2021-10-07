@@ -39,7 +39,7 @@ namespace ATM
 
         private void WriteToLog(decimal input)
         {
-            string logMessage = $"{DateTime.Today:yyyy-MM-dd}: {input} {balance}\n";
+            string logMessage = $"{DateTime.Today:yyyy-MM-dd}: Transaction: {input} Balance: {balance}\n";
             File.AppendAllText("transaction-log.txt", logMessage);
         }
 
